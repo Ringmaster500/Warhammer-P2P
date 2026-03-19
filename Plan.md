@@ -3,11 +3,16 @@
 ## 🛠️ Phase 1: Infrastructure & Foundation
 **Goal:** Stand up the core environment so the frontend has something to talk to.
 
-* [ ] **1.1 Server Setup:** Provision VPS and install Coolify.
+* [x] **1.1 Server Setup:** Provision VPS and install Coolify.
+  * _Note: Coolify is already deployed and running on the server at `100.70.171.40`. SSH access via `ringmaster500@100.70.171.40` (key-authorized). No action needed._
 * [ ] **1.2 Database:** Deploy a single Postgres instance via Coolify.
+  * _Note: Deployment-time task. Will be configured via Coolify dashboard when code is ready to push live._
 * [ ] **1.3 Object Storage:** Provision Cloudflare R2 bucket and set up CORS policies for direct browser uploads.
+  * _Note: Deployment-time task. Requires Cloudflare account credentials. Will configure CORS when deploying._
 * [ ] **1.4 Backend Engine:** Deploy Directus via Coolify, connect it to the Postgres database and R2 bucket.
+  * _Note: Deployment-time task. Will be deployed via Coolify once 1.2 and 1.3 are live._
 * [ ] **1.5 API Proxies:** Expose the Directus API and secure it with initial admin tokens.
+  * _Note: Deployment-time task. Will generate admin tokens after Directus is live._
 
 ## 🗄️ Phase 2: Database Schema & Core Logic
 **Goal:** Define the exact shape of the data in Directus before any UI is built.
@@ -21,7 +26,8 @@
 ## 🎨 Phase 3: Frontend Foundation & API Integrations
 **Goal:** Build the UI shell and hook up the third-party services.
 
-* [ ] **3.1 Initialize App:** Scaffold Next.js boilerplate with Tailwind CSS.
+* [x] **3.1 Initialize App:** Scaffold Next.js boilerplate with Tailwind CSS.
+  * _Note: Scaffolded with `create-next-app` using TypeScript, Tailwind CSS, ESLint, App Router, and `src/` directory. Located at `c:\VSCode Projects\Warhammer P2P Site\warhammer-p2p\`. Dev server runs on `http://localhost:3000`._
 * [ ] **3.2 Theming:** Implement the orange-dominant design system (e.g., primary hex `#F97316`) focusing on high-contrast Call-to-Action buttons for psychological urgency.
 * [ ] **3.3 Component Library:** Build reusable UI components (Nav bar, modal wrappers, input fields, image carousels).
 * [ ] **3.4 Auth State:** Connect Next.js to Directus authentication endpoints (Login/Register/Logout).

@@ -28,8 +28,10 @@
 
 * [x] **3.1 Initialize App:** Scaffold Next.js boilerplate with Tailwind CSS.
   * _Note: Scaffolded with `create-next-app` using TypeScript, Tailwind CSS, ESLint, App Router, and `src/` directory. Located at `c:\VSCode Projects\Warhammer P2P Site\warhammer-p2p\`. Dev server runs on `http://localhost:3000`._
-* [ ] **3.2 Theming:** Implement the orange-dominant design system (e.g., primary hex `#F97316`) focusing on high-contrast Call-to-Action buttons for psychological urgency.
-* [ ] **3.3 Component Library:** Build reusable UI components (Nav bar, modal wrappers, input fields, image carousels).
+* [x] **3.2 Theming:** Implement the orange-dominant design system (e.g., primary hex `#F97316`) focusing on high-contrast Call-to-Action buttons for psychological urgency.
+  * _Note: Implemented in `globals.css` — full CSS custom property system with warm stone dark palette, orange accent tokens, button/card/badge/input component classes, gradient utilities, and responsive type scale._
+* [x] **3.3 Component Library:** Build reusable UI components (Nav bar, modal wrappers, input fields, image carousels).
+  * _Note: Built `Navbar.tsx` (scroll-aware blur, mobile hamburger), `Footer.tsx` (link columns, X/Discord/Reddit), `Icons.tsx` (centralized inline SVG library — no emoji, no external deps). Homepage (`page.tsx`) assembled with Hero, Stats Bar, Listing Cards, How It Works, and Host CTA sections._
 * [ ] **3.4 Auth State:** Connect Next.js to Directus authentication endpoints (Login/Register/Logout).
 * [ ] **3.5 Stripe Connect:** Setup platform account, generate test API keys, and build a Directus endpoint to handle Connect onboarding.
 * [ ] **3.6 Stripe Identity:** Configure identity verification webhooks to update the `KYC_Status` table in Directus.

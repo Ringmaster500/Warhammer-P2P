@@ -1,0 +1,9 @@
+{
+  "name": "warhammer-p2p-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd warhammer-p2p && npm install && npm run build",
+    "start": "cd warhammer-p2p && npm start"
+  }
+}

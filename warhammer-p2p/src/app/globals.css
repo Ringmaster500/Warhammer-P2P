@@ -1,114 +1,107 @@
 @import "tailwindcss";
 
 /* ============================================================
-   WAR-RENT DESIGN SYSTEM
-   Orange-dominant, dark-mode first, high-contrast
+   THE DIGITAL ARMORY — DESIGN SYSTEM
+   "The Tactical Archivist" — Enterprise Military Interface
    ============================================================ */
 
 :root {
-  /* Brand Palette */
-  --color-orange-950: #431407;
-  --color-orange-900: #7c2d12;
-  --color-orange-800: #9a3412;
-  --color-orange-700: #c2410c;
-  --color-orange-600: #ea580c;
-  --color-orange-500: #f97316;
-  --color-orange-400: #fb923c;
-  --color-orange-300: #fdba74;
-  --color-orange-200: #fed7aa;
-  --color-orange-100: #ffedd5;
-  --color-orange-50:  #fff7ed;
+  /* ── Surface Architecture (The Layering System) ─────── */
+  --surface:                 #121317;   /* Level 0: Void-black floor        */
+  --surface-dim:             #0E0F12;   /* Below floor, atmospheric         */
+  --surface-container-low:   #1A1B1F;   /* Level 1: Section backgrounds     */
+  --surface-container:       #1F2025;   /* Level 1.5: Mid panels            */
+  --surface-container-high:  #292A2E;   /* Level 2: Cards                   */
+  --surface-container-highest: #33343A; /* Level 2.5: Elevated chips        */
 
-  /* Neutral Palette (warm grays) */
-  --color-stone-950: #0c0a09;
-  --color-stone-900: #1c1917;
-  --color-stone-800: #292524;
-  --color-stone-700: #44403c;
-  --color-stone-600: #57534e;
-  --color-stone-500: #78716c;
-  --color-stone-400: #a8a29e;
-  --color-stone-300: #d6d3d1;
-  --color-stone-200: #e7e5e4;
-  --color-stone-100: #f5f5f4;
-  --color-stone-50:  #fafaf9;
+  /* ── On-Surface (Text) ───────────────────────────────── */
+  --on-surface:              #E3E2E7;   /* Primary readable text            */
+  --on-surface-variant:      #C6C5CD;   /* Secondary text                   */
+  --outline:                 #918F9A;   /* Tertiary / helper text           */
+  --outline-variant:         #46464B;   /* Ghost border base                */
 
-  /* Semantic tokens */
-  --bg-primary:    var(--color-stone-950);
-  --bg-secondary:  var(--color-stone-900);
-  --bg-card:       var(--color-stone-800);
-  --bg-card-hover: var(--color-stone-700);
+  /* ── Primary Accent: Safety Orange ──────────────────── */
+  --primary:                 #FFB693;   /* Valkyrie gradient start          */
+  --on-primary:              #5C1D00;
+  --primary-container:       #531E00;   /* Valkyrie gradient end            */
+  --on-primary-container:    #FA6900;   /* THE tactical action color        */
 
-  --text-primary:   #f5f5f4;
-  --text-secondary: var(--color-stone-400);
-  --text-muted:     var(--color-stone-500);
-  --text-accent:    var(--color-orange-400);
+  /* ── Tertiary: Burnished Gold (Excellence / Status) ─── */
+  --tertiary:                #F4BF3F;
+  --tertiary-dim:            rgba(244, 191, 63, 0.15);
+  --tertiary-border:         rgba(244, 191, 63, 0.4);
 
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-card:   rgba(255, 255, 255, 0.10);
+  /* ── Secondary: Ultramarine (Info / Admin) ──────────── */
+  --secondary-container:     #015CB9;
+  --on-secondary-container:  #D8E2FF;
 
-  --accent-primary:   var(--color-orange-500);
-  --accent-hover:     var(--color-orange-400);
-  --accent-active:    var(--color-orange-600);
-  --accent-glow:      rgba(249, 115, 22, 0.25);
-  --accent-glow-lg:   rgba(249, 115, 22, 0.15);
+  /* ── Tactical Glows ──────────────────────────────────── */
+  --glow-orange:             rgba(250, 105, 0, 0.25);
+  --glow-orange-lg:          rgba(250, 105, 0, 0.12);
+  --glow-gold:               rgba(244, 191, 63, 0.2);
 
-  /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Bebas Neue', 'Impact', 'Arial Narrow', sans-serif;
+  /* ── The Ghost Border ────────────────────────────────── */
+  --ghost-border:            rgba(70, 70, 75, 0.15);  /* feel, don't see */
 
-  /* Spacing Scale */
-  --section-padding: clamp(4rem, 8vw, 8rem);
+  /* ── Typography ──────────────────────────────────────── */
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
 
-  /* Shadows */
-  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
-  --shadow-card-hover: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(249,115,22,0.2);
-  --shadow-orange-glow: 0 0 30px rgba(249,115,22,0.4);
+  /* ── Spacing Tokens ──────────────────────────────────── */
+  --sp-3:  0.6rem;
+  --sp-16: 3.5rem;
+  --sp-20: 4.5rem;
+  --section-padding: clamp(4rem, 8vw, 7rem);
 
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* ── Shadows (Glow of Darkness) ─────────────────────── */
+  --shadow-float: 0 32px 64px rgba(14, 15, 18, 0.4);
+  --shadow-hover: 0 32px 64px rgba(14, 15, 18, 0.55), 0 0 0 1px rgba(250, 105, 0, 0.18);
+
+  /* ── Transitions ─────────────────────────────────────── */
+  --t-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================================
-   BASE RESET & GLOBAL STYLES
+   BASE RESET
    ============================================================ */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
+  background-color: var(--surface);
+  color: var(--on-surface);
+  font-family: var(--font-body);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Subtle atmospheric noise */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
 }
 
 /* ============================================================
-   TYPOGRAPHY
+   TYPOGRAPHY: Authoritative Clarity
    ============================================================ */
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--text-primary);
+  color: var(--on-surface);
 }
 
-h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+h1 { font-size: clamp(2.75rem, 6vw, 5.5rem); }
 h2 { font-size: clamp(1.75rem, 4vw, 3rem); }
-h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+h3 { font-size: clamp(1.125rem, 2.5vw, 1.625rem); }
 
 p {
+  font-family: var(--font-body);
   line-height: 1.7;
-  color: var(--text-secondary);
+  color: var(--on-surface-variant);
 }
 
 a {
@@ -116,8 +109,18 @@ a {
   text-decoration: none;
 }
 
+/* Metadata label style — the archival theme */
+.label-sm {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--outline);
+}
+
 /* ============================================================
-   BUTTONS
+   BUTTONS: Tactical Precision
    ============================================================ */
 
 .btn {
@@ -126,203 +129,220 @@ a {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1.75rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.9375rem;
   letter-spacing: 0.01em;
-  border-radius: 0.5rem;
+  /* Sharp corners — Tactical aesthetic */
+  border-radius: 0.125rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition:
-    background-color var(--transition-fast),
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
+  transition: background-color var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
   white-space: nowrap;
+  position: relative;
 }
 
 .btn:active { transform: scale(0.97); }
 
+/* Primary: High-energy, high-intent */
 .btn-primary {
-  background-color: var(--accent-primary);
-  color: white;
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
 }
 .btn-primary:hover {
-  background-color: var(--accent-hover);
-  box-shadow: var(--shadow-orange-glow);
+  background-color: #6B2800;
+  box-shadow: 0 0 0 2px var(--on-primary-container), 0 8px 24px var(--glow-orange);
   transform: translateY(-1px);
 }
 
+/* Secondary: The Gold Standard */
 .btn-secondary {
   background-color: transparent;
-  color: var(--text-primary);
-  border: 1.5px solid var(--border-card);
+  color: var(--on-surface-variant);
+  border: 1px solid var(--tertiary-border);
+  color: var(--tertiary);
 }
 .btn-secondary:hover {
-  background-color: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.2);
+  background-color: var(--tertiary-dim);
+  box-shadow: 0 0 0 2px var(--tertiary-border);
+  color: var(--tertiary);
+  transform: translateY(-1px);
 }
 
-.btn-lg {
-  padding: 1rem 2.5rem;
-  font-size: 1.0625rem;
-  border-radius: 0.625rem;
+.btn-lg { padding: 1rem 2.5rem; font-size: 1.0625rem; }
+.btn-sm { padding: 0.5rem 1.25rem; font-size: 0.875rem; }
+
+/* Ghost button for inline uses */
+.btn-ghost {
+  background: none;
+  border: 1px solid var(--ghost-border);
+  color: var(--on-surface-variant);
 }
-
-.btn-sm {
-  padding: 0.5rem 1.25rem;
-  font-size: 0.875rem;
-}
-
-/* ============================================================
-   CARDS
-   ============================================================ */
-
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
-  border-radius: 1rem;
-  box-shadow: var(--shadow-card);
-  transition:
-    box-shadow var(--transition-base),
-    border-color var(--transition-base),
-    transform var(--transition-base);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-card-hover);
-  border-color: rgba(249,115,22,0.3);
-  transform: translateY(-3px);
+.btn-ghost:hover {
+  background: var(--surface-container);
+  border-color: var(--outline-variant);
 }
 
 /* ============================================================
-   SECTION UTILITIES
+   LAYOUT UTILITIES
    ============================================================ */
 
-.section {
-  padding: var(--section-padding) 1.5rem;
-}
+.section { padding: var(--section-padding) 1.5rem; }
 
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   width: 100%;
 }
 
-.section-label {
+/* ============================================================
+   INVENTORY CARDS: Command Console Modules
+   ============================================================ */
+
+.card {
+  background: var(--surface-container-high);
+  /* No standard borders — Background shift achieves separation */
+  border-radius: 0.25rem;
+  transition: transform var(--t-base), box-shadow var(--t-base);
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ============================================================
+   TACTICAL SECTION LABELS
+   ============================================================ */
+
+.section-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.375rem 1rem;
-  background: var(--accent-glow);
-  border: 1px solid var(--accent-primary);
-  border-radius: 999px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  padding: 0.3rem 0.875rem;
+  background: var(--surface-container-high);
+  /* Ghost border — felt, not seen */
+  border: 1px solid rgba(70, 70, 75, 0.5);
+  border-radius: 0.125rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-orange-300);
+  color: var(--outline);
   margin-bottom: 1.25rem;
 }
 
 /* ============================================================
-   BADGES & TAGS
+   TACTICAL CHIPS: Physical Machine Toggles
+   ============================================================ */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: var(--surface-container-highest);
+  border-radius: 0; /* rounded-none — tactical toggles */
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.chip-active {
+  background: var(--on-primary-container);
+  color: #fff;
+}
+
+/* ============================================================
+   BADGES
    ============================================================ */
 
 .badge {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.125rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .badge-orange {
-  background: rgba(249, 115, 22, 0.15);
-  border: 1px solid rgba(249, 115, 22, 0.4);
-  color: var(--color-orange-300);
+  background: rgba(250, 105, 0, 0.15);
+  color: var(--on-primary-container);
+}
+
+.badge-gold {
+  background: var(--tertiary-dim);
+  color: var(--tertiary);
 }
 
 /* ============================================================
-   FORM ELEMENTS
+   INPUTS: Ghost Boxes — Active = Ultramarine
    ============================================================ */
 
 .input {
   width: 100%;
   padding: 0.75rem 1rem;
-  background: var(--bg-card);
-  border: 1.5px solid var(--border-card);
-  border-radius: 0.5rem;
-  color: var(--text-primary);
-  font-family: var(--font-sans);
+  background: var(--surface-container);
+  border: 1px solid var(--ghost-border);
+  border-bottom: 1.5px solid rgba(70, 70, 75, 0.6);
+  border-radius: 0.125rem;
+  color: var(--on-surface);
+  font-family: var(--font-body);
   font-size: 0.9375rem;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
   outline: none;
 }
-
 .input:focus {
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  border-color: var(--secondary-container);
+  border-bottom-color: var(--secondary-container);
+  box-shadow: 0 0 0 2px rgba(1, 92, 185, 0.25);
 }
-
-.input::placeholder {
-  color: var(--text-muted);
-}
+.input::placeholder { color: var(--outline); }
 
 /* ============================================================
-   DIVIDERS
-   ============================================================ */
-
-.divider {
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--border-subtle) 20%,
-    var(--border-card) 50%,
-    var(--border-subtle) 80%,
-    transparent
-  );
-  border: none;
-  margin: 0;
-}
-
-/* ============================================================
-   GRADIENT TEXT
+   GRADIENT TEXT — Valkyrie
    ============================================================ */
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-orange-400), var(--color-orange-200));
+  background: linear-gradient(135deg, var(--primary) 0%, var(--on-primary-container) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-text {
+  background: linear-gradient(135deg, var(--tertiary) 0%, #D4A520 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 /* ============================================================
-   NOISE TEXTURE OVERLAY
+   GLASSMORPHISM — For floating overlays
    ============================================================ */
 
-.noise-overlay::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
+.glass {
+  background: rgba(31, 32, 37, 0.70);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 /* ============================================================
    SCROLLBAR
    ============================================================ */
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--surface); }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-stone-700);
-  border-radius: 999px;
+  background: var(--outline-variant);
+  border-radius: 0;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--color-stone-600); }
+::-webkit-scrollbar-thumb:hover { background: var(--outline); }
 
 /* ============================================================
    SELECTION
@@ -332,3 +352,67 @@ a {
   background: rgba(249, 115, 22, 0.35);
   color: var(--text-primary);
 }
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Better touch targets on mobile buttons */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  .input {
+    min-height: 44px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  /* Section spacing tighter on mobile */
+  .section {
+    padding: clamp(2.5rem, 6vw, 4rem) 1rem;
+  }
+
+  /* Container gets a bit more breathing room on the sides */
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Hero h1 - clamp down further */
+  h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .section-label span {
+    font-size: 0.7rem;
+  }
+
+  .btn-lg {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* ============================================================
+   DIVIDERS — No Lines Rule Implementation
+   ============================================================ */
+
+/* Use background-shift class to separate sections without borders */
+.bg-shift { background-color: var(--surface-container-low); }
+.bg-level-2 { background-color: var(--surface-container-high); }
+.bg-floor { background-color: var(--surface); }
+.bg-dim { background-color: var(--surface-dim); }

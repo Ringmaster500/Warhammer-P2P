@@ -6,20 +6,21 @@ import { LogoSwordIcon } from "@/components/Icons";
 const footerLinks = {
   Product: [
     { label: "Browse Armies", href: "/browse" },
-    { label: "How It Works", href: "#how-it-works" },
+    { label: "How It Works", href: "/#how-it-works" },
     { label: "List Your Army", href: "/list" },
-    { label: "Pricing", href: "/pricing" },
+    { label: "Trust & Safety", href: "/trust" },
+  ],
+  Account: [
+    { label: "Sign Up", href: "/register" },
+    { label: "Log In", href: "/login" },
+    { label: "Host Dashboard", href: "/dashboard" },
+    { label: "Admin Panel", href: "/admin" },
   ],
   Support: [
-    { label: "FAQ", href: "/faq" },
-    { label: "Contact Us", href: "/contact" },
-    { label: "Damage & Disputes", href: "/disputes" },
-    { label: "Shipping Info", href: "/shipping" },
-  ],
-  Legal: [
-    { label: "Terms of Service", href: "/terms" },
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Rental Agreement", href: "/agreement" },
+    { label: "FAQ", href: "/trust" },
+    { label: "Dispute Info", href: "/trust" },
+    { label: "Shipping Info", href: "/trust" },
+    { label: "Contact Us", href: "mailto:support@warrent.gg" },
   ],
 };
 
@@ -33,22 +34,14 @@ export default function Footer() {
   return (
     <footer
       style={{
-        backgroundColor: "var(--bg-secondary)",
-        borderTop: "1px solid var(--border-subtle)",
-        padding: "4rem 1.5rem 2rem",
+        /* Level 1 — tonal step, no border needed */
+        backgroundColor: "var(--surface-container-low)",
+        padding: "4.5rem 1.5rem 2.5rem",
       }}
     >
       <div className="container">
         {/* Top row */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr repeat(3, 1fr)",
-            gap: "3rem",
-            marginBottom: "3rem",
-          }}
-          className="footer-grid"
-        >
+        <div className="footer-grid" style={{ marginBottom: "3.5rem" }}>
           {/* Brand column */}
           <div>
             <Link
@@ -57,7 +50,7 @@ export default function Footer() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.625rem",
-                marginBottom: "1rem",
+                marginBottom: "1.25rem",
               }}
             >
               <span
@@ -67,64 +60,95 @@ export default function Footer() {
                   justifyContent: "center",
                   width: "2rem",
                   height: "2rem",
-                  background: "linear-gradient(135deg, #f97316, #ea580c)",
-                  borderRadius: "0.4rem",
+                  background: "linear-gradient(135deg, var(--primary), var(--on-primary-container))",
+                  borderRadius: "0.125rem",
                 }}
               >
-                <LogoSwordIcon size={14} color="white" />
+                <LogoSwordIcon size={13} color="white" />
               </span>
               <span
                 style={{
-                  fontWeight: 800,
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 700,
                   fontSize: "1.125rem",
-                  color: "var(--text-primary)",
+                  letterSpacing: "-0.025em",
+                  color: "var(--on-surface)",
                 }}
               >
-                War<span style={{ color: "var(--accent-primary)" }}>-Rent</span>
+                War<span style={{ color: "var(--on-primary-container)" }}>-Rent</span>
               </span>
             </Link>
             <p
               style={{
-                fontSize: "0.9rem",
-                color: "var(--text-muted)",
-                lineHeight: 1.7,
-                maxWidth: "260px",
+                fontSize: "0.875rem",
+                color: "var(--outline)",
+                lineHeight: 1.75,
+                maxWidth: "240px",
               }}
             >
-              The peer-to-peer marketplace for renting beautifully painted Warhammer armies. Safe, insured, and built for the community.
+              The peer-to-peer marketplace for renting beautifully painted Warhammer armies. Safe, insured, built for the community.
             </p>
+
+            {/* Social links as tactical chips */}
+            <div style={{ display: "flex", gap: "0.375rem", marginTop: "1.5rem" }}>
+              {socials.map(({ label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="chip"
+                  style={{ cursor: "pointer" }}
+                  onMouseEnter={(e) => {
+                    (e.target as HTMLAnchorElement).style.background = "var(--surface-container-highest)";
+                    (e.target as HTMLAnchorElement).style.color = "var(--on-surface)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.target as HTMLAnchorElement).style.background = "var(--surface-container-highest)";
+                    (e.target as HTMLAnchorElement).style.color = "var(--on-surface-variant)";
+                  }}
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Link columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
               <h4
+                className="label-sm"
                 style={{
-                  fontSize: "0.8125rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: "var(--text-muted)",
-                  marginBottom: "1rem",
+                  color: "var(--on-primary-container)",
+                  marginBottom: "1.25rem",
                 }}
               >
                 {category}
               </h4>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.625rem",
+                }}
+              >
                 {links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link
                       href={link.href}
                       style={{
-                        fontSize: "0.9rem",
-                        color: "var(--text-secondary)",
-                        transition: "color 150ms ease",
+                        fontSize: "0.875rem",
+                        color: "var(--outline)",
+                        transition: "color var(--t-fast)",
+                        letterSpacing: "0.01em",
                       }}
                       onMouseEnter={(e) =>
-                        ((e.target as HTMLAnchorElement).style.color = "var(--text-primary)")
+                        ((e.target as HTMLAnchorElement).style.color = "var(--on-surface)")
                       }
                       onMouseLeave={(e) =>
-                        ((e.target as HTMLAnchorElement).style.color = "var(--text-secondary)")
+                        ((e.target as HTMLAnchorElement).style.color = "var(--outline)")
                       }
                     >
                       {link.label}
@@ -136,10 +160,10 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom row */}
+        {/* Bottom row — separated by ghost border */}
         <div
           style={{
-            borderTop: "1px solid var(--border-subtle)",
+            borderTop: "1px solid rgba(70,70,75,0.25)",
             paddingTop: "1.5rem",
             display: "flex",
             alignItems: "center",
@@ -148,39 +172,32 @@ export default function Footer() {
             gap: "1rem",
           }}
         >
-          <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", margin: 0 }}>
+          <p
+            className="label-sm"
+            style={{ color: "var(--outline)", margin: 0, textTransform: "none", letterSpacing: "0.01em", fontSize: "0.8125rem" }}
+          >
             © {new Date().getFullYear()} War-Rent. All rights reserved. Not affiliated with Games Workshop.
           </p>
-          <div style={{ display: "flex", gap: "1.25rem" }}>
-            {socials.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                style={{
-                  fontSize: "0.875rem",
-                  color: "var(--text-muted)",
-                  transition: "color 150ms ease",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.target as HTMLAnchorElement).style.color = "var(--accent-primary)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.target as HTMLAnchorElement).style.color = "var(--text-muted)")
-                }
-              >
-                {label}
-              </a>
-            ))}
-          </div>
+          <p
+            className="label-sm"
+            style={{ color: "var(--outline)", margin: 0, textTransform: "none", letterSpacing: "0.01em", fontSize: "0.8125rem" }}
+          >
+            Built by the community, for the community.
+          </p>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          .footer-grid { grid-template-columns: 1fr 1fr !important; }
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 1.5fr repeat(3, 1fr);
+          gap: 3rem;
+        }
+        @media (max-width: 860px) {
+          .footer-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 480px) {
-          .footer-grid { grid-template-columns: 1fr !important; }
+          .footer-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </footer>

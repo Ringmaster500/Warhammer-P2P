@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useEffect } from "react";
 import {
   ArmyIcon,
   SkullIcon,
@@ -188,6 +189,15 @@ export default function BrowsePage() {
   const [selectedPaint, setSelectedPaint] = useState("Any Quality");
   const [sortBy, setSortBy] = useState("Highest Rated");
   const [showAvailableOnly, setShowAvailableOnly] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const filtered = listings.filter((l) => {
     if (showAvailableOnly && !l.available) return false;
@@ -248,7 +258,19 @@ export default function BrowsePage() {
       {/* ── Filters + Grid ── */}
       <section className="section" style={{ paddingTop: "2.5rem" }}>
         <div className="container">
+          {/* Mobile filter toggle */}
+          {isMobile && (
+            <button
+              onClick={() => setFiltersOpen(!filtersOpen)}
+              className="btn btn-secondary"
+              style={{ marginBottom: "1rem", width: "100%", justifyContent: "space-between", display: "flex" }}
+            >
+              <span>🎛 Filters</span>
+              <span style={{ fontSize: "0.75rem", opacity: 0.6 }}>{filtersOpen ? "Hide" : "Show"}</span>
+            </button>
+          )}
           <div
+            className="browse-layout"
             style={{
               display: "grid",
               gridTemplateColumns: "240px 1fr",
@@ -257,7 +279,7 @@ export default function BrowsePage() {
             }}
           >
             {/* ── Sidebar Filters ── */}
-            <aside>
+            <aside style={{ display: (!isMobile || filtersOpen) ? "block" : "none" }}>
               <div
                 className="card"
                 style={{ padding: "1.5rem", position: "sticky", top: "5rem" }}
@@ -420,23 +442,24 @@ export default function BrowsePage() {
                   <strong style={{ color: "var(--text-primary)" }}>{sorted.length}</strong> armies found
                 </span>
 
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>Sort:</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", flexWrap: "wrap" }}>
+                  <span style={{ fontSize: "0.875rem", color: "var(--text-muted)", flexShrink: 0 }}>Sort:</span>
                   {sortOptions.map((opt) => (
                     <button
                       key={opt}
                       onClick={() => setSortBy(opt)}
                       style={{
-                        padding: "0.35rem 0.75rem",
+                        padding: "0.35rem 0.625rem",
                         borderRadius: "0.5rem",
                         border: sortBy === opt ? "1px solid var(--accent-primary)" : "1px solid var(--border-card)",
                         background: sortBy === opt ? "var(--accent-glow)" : "transparent",
                         color: sortBy === opt ? "var(--color-orange-300)" : "var(--text-secondary)",
-                        fontSize: "0.8125rem",
+                        fontSize: "0.75rem",
                         fontWeight: 500,
                         cursor: "pointer",
                         fontFamily: "var(--font-sans)",
                         transition: "all var(--transition-fast)",
+                        whiteSpace: "nowrap",
                       }}
                     >
                       {opt}
@@ -631,7 +654,6 @@ export default function BrowsePage() {
         </div>
       </section>
 
-      {/* Mobile filter note */}
       <style>{`
         @media (max-width: 768px) {
           .browse-layout { grid-template-columns: 1fr !important; }

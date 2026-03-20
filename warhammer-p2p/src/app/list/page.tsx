@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ShieldCheckIcon,
   CheckCircleIcon,
@@ -86,9 +86,17 @@ export default function ListArmyPage() {
   const [dailyRate, setDailyRate] = useState(15);
   const [replacementValue, setReplacementValue] = useState(500);
   const [dragOver, setDragOver] = useState(false);
-  const [mockPhotos, setMockPhotos] = useState(2); // simulate 2 photos already added
+  const [mockPhotos, setMockPhotos] = useState(2);
   const [unitsText, setUnitsText] = useState("");
   const [points, setPoints] = useState(2000);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const weeklyRate = Math.round(dailyRate * 5.5);
   const platformFeeRate = 0.15;
@@ -159,7 +167,7 @@ export default function ListArmyPage() {
       {/* ── Form + Sidebar ── */}
       <section className="section" style={{ paddingTop: "2.5rem" }}>
         <div className="container">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "2.5rem", alignItems: "start" }}>
+          <div className="list-layout" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "2.5rem", alignItems: "start" }}>
 
             {/* ── Form Area ── */}
             <div>
@@ -315,7 +323,7 @@ export default function ListArmyPage() {
                       </div>
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>
+                    <div className="pricing-stats" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>
                       {[
                         { label: "Daily rate", value: `$${dailyRate}` },
                         { label: "Auto weekly rate", value: `$${weeklyRate}` },
@@ -437,7 +445,7 @@ export default function ListArmyPage() {
             </div>
 
             {/* ── Right Sidebar ── */}
-            <div style={{ position: "sticky", top: "5.5rem" }}>
+            <div className="list-sidebar" style={{ position: "sticky", top: "5.5rem" }}>
               {/* Earnings estimator */}
               <div className="card" style={{ padding: "1.5rem", marginBottom: "1rem" }}>
                 <h3 style={{ fontSize: "0.875rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-accent)", marginBottom: "1.25rem" }}>
@@ -484,6 +492,16 @@ export default function ListArmyPage() {
           </div>
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .list-layout { grid-template-columns: 1fr !important; }
+          .list-sidebar { position: static !important; }
+        }
+        @media (max-width: 600px) {
+          .pricing-stats { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </>
   );
 }
